@@ -5,4 +5,5 @@ EvobotProxy::Application.routes.draw do
       get :prey
     end
   end
+  get '/', to: "positions#index"
 end

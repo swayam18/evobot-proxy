@@ -1,6 +1,6 @@
 class PositionsController < ApplicationController
   def index
-    @positions = Position.all
+    @positions = Position.where(name: 'predator').limit(1) + Position.where(name: 'prey').limit(1)
     render json: @positions
   end
 
