@@ -11,9 +11,14 @@ class RobotsController < ApplicationController
   end
 
   def location
-    robot = Robot.find_by_name(robot_params["name"])
+    robot = Robot.find_by_name(params["name"])
     robot.location(robot_params["x"],robot_params["y"])
     render json: robot
+  end
+
+  def show
+    robot = Robot.find_by_name(params["name"])
+    render json: robot.to_json(include: :positions)
   end
 
   private
