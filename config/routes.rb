@@ -4,6 +4,5 @@ EvobotProxy::Application.routes.draw do
       post :location
     end
   end
-
   get '/', to: "robots#index"
 end

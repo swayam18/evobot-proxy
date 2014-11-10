@@ -12,7 +12,7 @@ class RobotsController < ApplicationController
 
   def location
     robot = Robot.find_by_name(params["name"])
-    robot.location(robot_params["x"],robot_params["y"])
+    robot.location(params["x"],params["y"])
     render json: robot
   end
 
