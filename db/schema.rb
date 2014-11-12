@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141109231137) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "positions", force: true do |t|
     t.decimal  "x"
     t.decimal  "y"
