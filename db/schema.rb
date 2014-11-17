@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109231137) do
+ActiveRecord::Schema.define(version: 20141117100449) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  create_table "errors", force: true do |t|
+    t.decimal  "o_error"
+    t.decimal  "p_error"
+    t.integer  "robot_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "positions", force: true do |t|
     t.decimal  "x"

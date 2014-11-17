@@ -1,7 +1,7 @@
 class RobotsController < ApplicationController
   def index
     @robots = Robot.all
-    render json: @robots.to_json(include: { last_position: { only: [:x,:y,:created_at]}}, only: [:id, :name, :state])
+    render json: @robots.to_json(include: [{ last_position: { only: [:x,:y,:created_at]}}, :last_error], only: [:id, :name, :state])
   end
 
   def update
@@ -10,9 +10,25 @@ class RobotsController < ApplicationController
     render json: robot
   end
 
+  def locations
+    robot = Robot.find_by_name(params["name"])
+    render json: robot.to_json(include: :positions)
+  end
+
   def location
     robot = Robot.find_by_name(params["name"])
     robot.location(params["x"],params["y"])
+    render json: robot
+  end
+
+  def errors
+    robot = Robot.find_by_name(params["name"])
+    render json: robot.to_json(include: :errors)
+  end
+
+  def error
+    robot = Robot.find_by_name(params["name"])
+    robot.error(params["o_error"],params["p_error"])
     render json: robot
   end
 
