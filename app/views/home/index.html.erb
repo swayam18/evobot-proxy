@@ -7,6 +7,24 @@ $(function () {
             type: 'scatter',
             margin: [70, 50, 60, 80],
             events: {
+                load: function () {
+
+                        // set up the updating of the chart each second
+                        var prey_series = this.series[0];
+                        var predator_series = this.series[1];
+                        setInterval(function () {
+                            $.getJSON('/robots/', function (data) {
+                              prey = data[0].last_position
+                              predator = data[1].last_position
+                              prey_pos = [parseInt(prey.x), parseInt(prey.y)]
+                              predator_pos = [parseInt(predator.x), parseInt(predator.y)]
+                              console.log(prey_pos)
+                              console.log(predator_pos)
+                              prey_series.addPoint(prey_pos, true, true);
+                              predator_series.addPoint(predator_pos, true, true);
+                            });
+                        }, 5000);
+                    },
                 click: function (e) {
                     // find the clicked values and the series
                     var x = e.xAxis[0].value,
@@ -14,7 +32,7 @@ $(function () {
                         series = this.series[0];
 
                     // Add it
-                    series.addPoint([x, y]);
+                    series.addPoint([x, y], true, true);
 
                 }
             }
@@ -32,7 +50,8 @@ $(function () {
             gridLineWidth: 1,
             minPadding: 0.2,
             maxPadding: 0.2,
-            maxZoom: 60
+            maxZoom: 60,
+            min:0
         },
         yAxis: {
             title: {
@@ -41,6 +60,7 @@ $(function () {
             minPadding: 0.2,
             maxPadding: 0.2,
             maxZoom: 60,
+            min:0,
             plotLines: [{
                 value: 0,
                 width: 1,
