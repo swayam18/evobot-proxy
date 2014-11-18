@@ -12,18 +12,32 @@ $(function () {
                         // set up the updating of the chart each second
                         var prey_series = this.series[0];
                         var predator_series = this.series[1];
+                        var prey_prev_pos = [-1, -1]
+                        var predator_prev_pos = [-1, -1]
+
                         setInterval(function () {
                             $.getJSON('/robots/', function (data) {
                               prey = data[0].last_position
                               predator = data[1].last_position
                               prey_pos = [parseInt(prey.x), parseInt(prey.y)]
                               predator_pos = [parseInt(predator.x), parseInt(predator.y)]
-                              console.log(prey_pos)
-                              console.log(predator_pos)
-                              prey_series.addPoint(prey_pos, true, true);
-                              predator_series.addPoint(predator_pos, true, true);
+
+                              if (prey_pos[0] != prey_prev_pos[0] || prey_pos[1] != prey_prev_pos[1]) {
+                                prey_series.addPoint(prey_pos, true, true);
+                                prey_prev_pos = prey_pos
+                              }
+                              else { 
+                                console.log('prey didnt move!')
+                              }
+                              if (predator_pos[0] != predator_prev_pos[0] || predator_pos[1] != predator_prev_pos[1]) {
+                                predator_series.addPoint(predator_pos, true, true);
+                                predator_prev_pos = predator_pos
+                              }
+                              else {
+                                console.log('predator didnt move!')
+                              }
                             });
-                        }, 5000);
+                        }, 1000);
                     },
                 click: function (e) {
                     // find the clicked values and the series
