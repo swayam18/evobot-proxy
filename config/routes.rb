@@ -7,5 +7,5 @@ EvobotProxy::Application.routes.draw do
       get :locations
     end
   end
-  get '/', to: "robots#index"
+  get '/', to: "home#index"
 end
