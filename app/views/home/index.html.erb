@@ -38,17 +38,7 @@ $(function () {
                               }
                             });
                         }, 1000);
-                    },
-                click: function (e) {
-                    // find the clicked values and the series
-                    var x = e.xAxis[0].value,
-                        y = e.yAxis[0].value,
-                        series = this.series[0];
-
-                    // Add it
-                    series.addPoint([x, y], true, true);
-
-                }
+                    }
             }
         },
         title: {
@@ -89,16 +79,7 @@ $(function () {
         },
         plotOptions: {
             series: {
-                lineWidth: 1,
-                point: {
-                    events: {
-                        'click': function () {
-                            if (this.series.data.length > 1) {
-                                this.remove();
-                            }
-                        }
-                    }
-                }
+                lineWidth: 1
             }
         },
         series: [{name: 'Prey', data: <%= @prey%> }, {name: 'Predator', data: <%= @predator%>}]
