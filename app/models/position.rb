@@ -11,4 +11,8 @@ class Position < ActiveRecord::Base
   def previous
     Position.where("name=? AND id < ?",name,id).first
   end
+
+  def xy
+    [Integer(x), Integer(y)]
+  end
 end
