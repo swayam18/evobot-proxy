@@ -28,7 +28,7 @@ class RobotsController < ApplicationController
 
   def error
     robot = Robot.find_by_name(params["name"])
-    robot.error(params["iteration"],params["o_error"],params["p_error"])
+    robot.error(params["iteration"],params["o_error"],params["p_error"], params["state"])
     render json: robot
   end
 

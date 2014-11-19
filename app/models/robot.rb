@@ -2,8 +2,8 @@ class Robot < ActiveRecord::Base
   has_many :positions
   has_many :errors
   
-  def error(i,o,p)
-    errors.create(iteration: i, o_error: o , p_error: p)
+  def error(i,o,p, state)
+    errors.create(iteration: i, o_error: o , p_error: p, state: state)
   end
 
   def location(x,y)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117160826) do
+ActiveRecord::Schema.define(version: 20141119062140) do
 
   create_table "errors", force: true do |t|
     t.decimal  "o_error"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20141117160826) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "iteration"
+    t.integer  "state"
   end
 
   create_table "positions", force: true do |t|
