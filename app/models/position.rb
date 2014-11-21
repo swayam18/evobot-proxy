@@ -5,6 +5,15 @@ class Position < ActiveRecord::Base
   validates :x, presence: true
   validates :y, presence: true
 
+  def self.clear
+    if Rails.env == 'production'
+      p 'Purging Positions!'
+      Position.delete_all
+      true
+    end
+    false
+  end
+
   def previous
     Position.where("name=? AND id < ?",name,id).first
   end
@@ -12,4 +21,5 @@ class Position < ActiveRecord::Base
   def xy
     [Integer(x), Integer(y)]
   end
+
 end
