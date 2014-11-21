@@ -17,6 +17,9 @@ class PositionsController < ApplicationController
   def create
     @position = Position.create(position_params) 
     if @position.save
+      if Position.count > 1000
+        Position.clear
+      end
       render json: @position
     else
       render json: { errors: @position.errors.full_messages }, status: 422
