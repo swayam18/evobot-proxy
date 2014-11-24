@@ -8,4 +8,5 @@ EvobotProxy::Application.routes.draw do
     end
   end
   get '/', to: "home#index"
+  get '/about', to: "home#about"
 end

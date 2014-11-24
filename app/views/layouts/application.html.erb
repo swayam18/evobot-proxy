@@ -8,7 +8,30 @@
 </head>
 <body>
 
-<%= yield %>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <ul class="nav navbar-nav">
+      <li class="<%= 'active' if current_page?('/') %>">
+        <%= link_to "Home", "/" %>
+      </li>
+      <li class="<%= 'active' if current_page?(about_path) %>">
+        <%= link_to "About", about_path %>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="">
+        <%= image_tag "mec_logo.png", style: "height:52px;" %>
+      </li>
+      <li class="">
+        <%= image_tag "idc_logo.png", style: "height:52px;" %>
+      </li>
+      <li class="">
+        <%= image_tag "sutd_logo.jpg", style: "height:52px;" %>
+      </li>
+    </ul>
+  </div>
+</nav>
 
+<%= yield %>
 </body>
 </html>
