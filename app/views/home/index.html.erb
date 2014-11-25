@@ -1,12 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-3 col-md-2 sidebar">
-      <ul class="nav nav-sidebar">
-        <li class="active"><a href="#">Robot Position</a></li>
-        <li><a href="#">Robot Fitness</a></li>
-        <li><a href="#">Museum Snapshot</a></li>
-      </ul>
-    </div>
+    <%= render partial: "sidebar", locals: { page: "position" } %>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
       <div id="container" style="min-width: 310px; height: 400px; max-width: 700px; margin: 0 auto"></div>
     </div>
