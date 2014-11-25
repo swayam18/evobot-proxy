@@ -4,6 +4,13 @@ class RobotsController < ApplicationController
     render json: @robots.to_json(include: [{ last_position: { only: [:x,:y,:created_at]}}, :last_error], only: [:id, :name, :state])
   end
 
+  def snapshot
+    @robot = Robot.find_by_name(params["name"])
+    @robot.snapshot = params[:snapshot]
+    @robot.save
+    render json: @robot
+  end
+
   def update
     robot = Robot.find_by_name(params["name"])
     robot.update_attributes(update_params)
@@ -23,7 +30,7 @@ class RobotsController < ApplicationController
 
   def errors
     robot = Robot.find_by_name(params["name"])
-    render json: robot.to_json(include: :errors)
+    render json: robot.to_json(include: :controller_errors)
   end
 
   def error
@@ -40,7 +47,7 @@ class RobotsController < ApplicationController
   private
     
   def update_params
-    params.require(:robot).permit(:name, :state)
+    params.require(:robot).permit(:name, :state, :snapshot)
   end
 
   def robot_params

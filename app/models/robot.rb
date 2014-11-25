@@ -1,9 +1,9 @@
 class Robot < ActiveRecord::Base
   has_many :positions
-  has_many :errors
-  
+  has_many :controller_errors
+
   def error(i,o,p, state)
-    errors.create(iteration: i, o_error: o , p_error: p, state: state)
+    controller_errors.create(iteration: i, o_error: o , p_error: p, state: state)
   end
 
   def location(x,y)
@@ -11,7 +11,7 @@ class Robot < ActiveRecord::Base
   end
 
   def last_error
-    errors.first
+    controller_errors.first
   end
 
   def last_position

@@ -11,9 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119062140) do
+ActiveRecord::Schema.define(version: 20141125171916) do
 
-  create_table "errors", force: true do |t|
+  create_table "cameras", force: true do |t|
+    t.string   "snapshot_file_name"
+    t.string   "snapshot_content_type"
+    t.integer  "snapshot_file_size"
+    t.datetime "snapshot_updated_at"
+  end
+
+  create_table "controller_errors", force: true do |t|
     t.decimal  "o_error"
     t.decimal  "p_error"
     t.integer  "robot_id"
