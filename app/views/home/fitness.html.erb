@@ -4,6 +4,9 @@
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
       <div id="container" style="min-width: 310px; height: 400px; max-width: 700px; margin: 0 auto"></div>
     </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <div id="other-container" style="min-width: 310px; height: 400px; max-width: 700px; margin: 20px auto"></div>
+    </div>
   </div>
 </div>
 <script>
@@ -14,14 +17,14 @@ $(function () {
             x: -20 //center
         },
         subtitle: {
-            text: 'O errors and P errors',
+            text: 'O Error',
             x: -20
         },
         xAxis: {
         },
         yAxis: {
             title: {
-                text: 'Error'
+                text: 'O Error'
             },
             plotLines: [{
                 value: 0,
@@ -39,10 +42,51 @@ $(function () {
         },
         series: [{
             name: 'prey',
-            data: <%= @prey%>
+            data: <%= @prey_o_errors%>
         }, {
             name: 'predator',
-            data: <%= @predator%>
+            data: <%= @predator_o_errors%>
+        }]
+    });
+});
+</script>
+<script>
+$(function () {
+    $('#other-container').highcharts({
+        title: {
+            text: 'Fitness',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'P Error',
+            x: -20
+        },
+        xAxis: {
+        },
+        yAxis: {
+            title: {
+                text: 'P Error'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'prey',
+            data: <%= @prey_p_errors%>
+        }, {
+            name: 'predator',
+            data: <%= @predator_p_errors%>
         }]
     });
 });
