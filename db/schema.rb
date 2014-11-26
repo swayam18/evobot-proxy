@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125171916) do
+ActiveRecord::Schema.define(version: 20141126110504) do
 
   create_table "cameras", force: true do |t|
     t.string   "snapshot_file_name"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20141125171916) do
     t.integer  "iteration"
     t.integer  "state"
   end
+
+  add_index "controller_errors", ["created_at"], name: "index_controller_errors_on_created_at", using: :btree
 
   create_table "positions", force: true do |t|
     t.decimal  "x"

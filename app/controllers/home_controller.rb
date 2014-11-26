@@ -12,8 +12,8 @@ class HomeController < ApplicationController
   end
 
   def fitness
-    prey_errors = Robot.find_by_name('prey').controller_errors.limit(50)
-    predator_errors = Robot.find_by_name('predator').controller_errors.limit(50)
+    prey_errors = Robot.find_by_name('prey').controller_errors.where("created_at >= ?", Time.zone.now.beginning_of_day)
+    predator_errors = Robot.find_by_name('predator').controller_errors.where("created_at >= ?", Time.zone.now.beginning_of_day)
 
     @prey_o_errors = prey_errors.map{|e| Float(e.o_error)}.reverse()
     @predator_o_errors = predator_errors.map{|e| Float(e.o_error)}.reverse()
