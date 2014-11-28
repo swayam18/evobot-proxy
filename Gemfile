@@ -30,6 +30,8 @@ gem 'lazy_high_charts'
 
 gem "paperclip", "~> 4.2"
 
+gem "aws-sdk"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
