@@ -7,7 +7,7 @@
       </div>
       <div id="other-container" style="min-width: 310px; height: 400px; max-width: 700px; margin: 20px auto">
         <%= image_tag @snapshot.url %>
-        <p><%="Taken on: #{Time.at(@snapshot.updated_at).to_formatted_s :time}"%> </p>
+        <p><%="Taken at: #{Time.at(@snapshot.updated_at).to_formatted_s :time}"%> </p>
       </div>
     </div>
   </div>
