@@ -8,7 +8,7 @@ class HomeController < ApplicationController
   end
 
   def snapshot
-    @snapshot_url = Camera.first.snapshot.url
+    @snapshot = Camera.first.snapshot
   end
 
   def fitness
